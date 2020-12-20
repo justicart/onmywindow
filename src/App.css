@@ -1,3 +1,79 @@
+@font-face {
+  font-family: 'GothamWeb';
+  src: local('Gotham'), url(./static/Gotham-Bold.otf) format('woff');
+}
+
 .App {
+  height: 720px;
   text-align: center;
+  perspective: 720px;
+  transform-origin: 0 0;
+  transform: scale(1);
+  width: 1280px;
+  font-family: 'GothamWeb';
+}
+
+.template {
+  background: url('./static/webtest.png');
+  width: 1280px;
+  height: 720px;
+  position: absolute;
+}
+
+.window {
+  /* background-color: rgba(255, 0, 0, 0.5); */
+  border: 1px solid rgba(255,255,255,.1);
+  left: 58px;
+  height: 720px;
+  position: absolute;
+  top: 91px;
+  transform: scale(0.716, 0.66) rotateX(-4.5deg) rotateY(-7.2deg) rotateZ(0.7deg) skewY(-1.3deg);
+  transform-origin: 0 0;
+  width: 1280px;
+}
+
+.mirror {
+  transform: rotateY(180deg);
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+.panel {
+  flex: 1;
+  padding: 30px;
+}
+.endText {
+  font-size: 100px;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 340px;
+}
+.unit {
+  font-size: 180px;
+  font-weight: bold;
+  line-height: 340px;
+  font-variant: tabular-nums;
+}
+.endText.animate,
+.unit.animate {
+  animation: unitAnimation 1s ease;
+}
+@keyframes unitAnimation {
+  0% {transform: scale(1) rotate(0deg);}
+  25% {transform: scale(1.5) rotate(25deg);}
+  75% {transform: scale(1.5) rotate(-25deg);}
+  100% {transform: scale(1) rotate(0deg);}
+}
+
+.progress {
+  width: 100%;
+}
+.bar {
+  border-radius: 10px;
+  height: 25px;
+  background-color: white;
 }
