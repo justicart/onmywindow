@@ -70,10 +70,13 @@
 }
 
 .progress {
+  background-color: rgba(255,255,255,.1);
+  border-radius: 10px;
+  overflow: hidden;
   width: 100%;
 }
 .bar {
+  background-color: white;
   border-radius: 10px;
   height: 25px;
-  background-color: white;
 }
