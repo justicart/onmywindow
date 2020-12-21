@@ -80,3 +80,13 @@
   border-radius: 10px;
   height: 25px;
 }
+
+
+.full {
+  width: 1280px;
+  height: 720px;
+}
+.full video {
+  width: 100%;
+  height: 100%;
+}

@@ -1,6 +1,9 @@
+
 import './App.css';
 import {useEffect, useRef, useState} from 'react';
 import {SEC_IN, UNITS} from './constants';
+
+import christmas from './static/christmas.mp4';
 
 function usePrevious(value) {
   const ref = useRef();
@@ -103,7 +106,7 @@ function App() {
   return (
     <div className="App" ref={appRef} onClick={requestFullscreen}>
       {false && <div className="template" />}
-      <div className="window">
+      {false && <div className="window">
         <div className="mirror">
           <div className="content">
             <Panel timeLeft={timeLeft} unit={UNITS.DAYS} />
@@ -111,6 +114,9 @@ function App() {
             <Panel timeLeft={timeLeft} unit={UNITS.MINUTES} />
           </div>
         </div>
+      </div>}
+      <div className="full">
+        <video src={christmas} autoPlay loop />
       </div>
     </div>
   );
