@@ -81,6 +81,7 @@ function Panel({timeLeft, unit}) {
 function App() {
   const [timeLeft, setTimeLeft] = useState({});
   const requestRef = useRef();
+  const appRef = useRef();
   useEffect(() => {
     setTimeLeft(getTimeLeft());
     requestRef.current = setInterval(setTimeLeft, 1000, getTimeLeft);
@@ -90,10 +91,17 @@ function App() {
     if (timeLeft < 0) {
       clearInterval(requestRef.current);
     }
-  }, [timeLeft])
+  }, [timeLeft]);
+
+  const requestFullscreen = () => {
+    if (document.fullscreenElement) {
+      return document.exitFullscreen();
+    }
+    appRef.current.requestFullscreen();
+  }
 
   return (
-    <div className="App">
+    <div className="App" ref={appRef} onClick={requestFullscreen}>
       {false && <div className="template" />}
       <div className="window">
         <div className="mirror">
