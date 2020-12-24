@@ -14,9 +14,14 @@
 }
 
 .buttons {
+  transition: 500ms opacity ease;
+  opacity: 1;
   position: absolute;
-  top: 720px;
+  top: 0;
   left: 100px;
+}
+.buttons.hide {
+  opacity: 0;
 }
 .button {
 	background-color:#00263b;
