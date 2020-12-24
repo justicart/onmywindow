@@ -38,7 +38,6 @@ function App() {
 
   return (
     <div className="App" ref={appRef} onMouseMove={()=> setButtonsHidden(false)}>
-      {false && <div className="template" />}
       <Projection override={override} />
       <div className={`buttons ${buttonsHidden ? 'hide' : ''}`}>
         <div className="buttonGroup">
