@@ -7,7 +7,6 @@ export const holidays = [
     slug: "newyears",
     name: "New Years",
     component: <NewYears />,
-    fullscreen: false,
     start: "Jan 1",
     end: "Jan 2",
     hide: true,
@@ -16,7 +15,6 @@ export const holidays = [
     slug: "halloween",
     name: "Halloween",
     component: <Halloween />,
-    fullscreen: false,
     start: "Oct 1",
     end: "Oct 31"
   },
@@ -24,7 +22,6 @@ export const holidays = [
     slug: "christmas",
     name: "Christmas",
     component: <Christmas />,
-    fullscreen: true,
     start: "Dec 1",
     end: "Dec 25"
   },
@@ -32,7 +29,6 @@ export const holidays = [
     slug: "newyears",
     name: "New Years",
     component: <NewYears />,
-    fullscreen: false,
     start: "Dec 26",
     end: "Dec 31"
   }

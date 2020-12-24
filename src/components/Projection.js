@@ -13,13 +13,6 @@ function Projection({override}) {
   })
 
   if (projection != null) {
-    if (projection.fullscreen === true) {
-      return (
-        <div className="full">
-          {projection.component}
-        </div>
-      )
-    }
     return (
       <div className="window">
         <div className="mirror">

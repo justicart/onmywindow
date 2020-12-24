@@ -1,5 +1,4 @@
-import christmas from '../static/christmas.mp4';
-import christmas_webm from '../static/christmas.webm';
+import christmas from '../static/christmas_full.mp4';
 
 function Christmas() {
   return (
