@@ -75,13 +75,13 @@
 }
 
 .window {
-  /* background-color: rgba(255, 0, 0, 0.5); */
+  background-color: rgba(255, 0, 0, 0.5);
   border: 1px solid rgba(255,255,255,.1);
   left: 126px;
   height: 720px;
   position: absolute;
   top: 111px;
-  transform: scale(0.712, 0.68) rotateX(-4deg) rotateY(-7deg) rotateZ(2deg) skewY(2.4deg) skewX(-3.6deg);
+  transform: scale(0.7, 0.75) rotateX(-4.7deg) rotateY(-7deg) rotateZ(2deg) skewY(1.8deg) skewX(-4.4deg);
   transform-origin: 0 0;
   width: 1280px;
 }

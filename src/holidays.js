@@ -35,11 +35,5 @@ export const holidays = [
     fullscreen: false,
     start: "Dec 26",
     end: "Dec 31"
-  },
-  {
-    slug: "test",
-    name: "Test",
-    component: <div className="template" />,
-    fullscreen: true,
   }
 ]
