@@ -5,7 +5,6 @@ function Christmas() {
   return (
     <video autoPlay loop muted autoBuffer playsInline>
       <source src={christmas} type="video/mp4" />
-      <source src={christmas_webm} type="video/webm" />
     </video>
   );
 }
