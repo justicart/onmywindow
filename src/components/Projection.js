@@ -1,4 +1,5 @@
 import {holidays} from '../holidays';
+import CornerPin from '../CornerPin';
 
 function Projection({override}) {
   const projection = holidays.find(holiday => {
@@ -14,11 +15,11 @@ function Projection({override}) {
 
   if (projection != null) {
     return (
-      <div className="window">
+      <CornerPin>
         <div className="mirror">
           {projection.component}
         </div>
-      </div>
+      </CornerPin>
     )
   }
 }

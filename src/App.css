@@ -77,13 +77,26 @@
 .window {
   /* background-color: rgba(255, 0, 0, 0.5); */
   border: 1px solid rgba(255,255,255,.1);
-  left: 126px;
+  left: 0;
   height: 720px;
   position: absolute;
-  top: 111px;
-  transform: scale(0.7, 0.75) rotateX(-4.7deg) rotateY(-7deg) rotateZ(2deg) skewY(1.8deg) skewX(-4.4deg);
+  top: 0;
+  /* transform: scale(0.7, 0.75) rotateX(-4.7deg) rotateY(-7deg) rotateZ(2deg) skewY(1.8deg) skewX(-4.4deg); */
   transform-origin: 0 0;
   width: 1280px;
+}
+
+.corner {
+  position: absolute;
+  top: 0px; left: 0px;
+  border: 1px solid white;
+  margin-left: -10px;
+  margin-top: -10px;
+  background: rgba(255,255,255,0.3);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: move;
 }
 
 .mirror {

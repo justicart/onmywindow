@@ -33,6 +33,7 @@ function App() {
     if (holiday.hide === true) return null;
     return <div
       className={`button ${override === holiday.slug ? 'selected' : ''}`}
+      key={holiday.slug}
       onClick={() => setOverride(holiday.slug)}
     >{holiday.name}</div>
   })
@@ -47,7 +48,7 @@ function App() {
             className={`button ${override == null ? 'selected' : ''}`}
             onClick={() => setOverride()}
           >Auto</div>
-          {overrideButtons}{' '}
+          {overrideButtons}
         </div>
         <div className="buttonGroup">
           <div
