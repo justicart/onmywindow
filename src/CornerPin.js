@@ -1,6 +1,6 @@
 import React from 'react';
 import {useEffect, useRef, useState} from 'react';
-import {useLocalStorage} from './hooks/useLocalStorage';
+import useLocalStorage from './hooks/useLocalStorage';
 
 import Corner from './Corner';
 

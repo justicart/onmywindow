@@ -1,6 +1,6 @@
 import React from 'react';
 import {useEffect, useRef, useState} from 'react';
-import {usePrevious} from '../hooks.js';
+import usePrevious from '../hooks/usePrevious';
 import {SEC_IN, UNITS} from '../constants';
 
 const getTimeLeft = () => {

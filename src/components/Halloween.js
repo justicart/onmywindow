@@ -1,7 +1,8 @@
+import Video from '../Video';
 import halloween from '../static/halloween.webm';
 
-function Christmas() {
-  return <video src={halloween} autoPlay loop muted autoBuffer playsInline />;
+function Halloween() {
+  return <Video src={halloween} type="video/webm" />;
 }
 
-export default Christmas;
+export default Halloween;

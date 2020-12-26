@@ -1,12 +1,11 @@
 import {holidays} from '../holidays';
 import CornerPin from '../CornerPin';
 
-function Projection({override, editing}) {
+function Projection({override, currentDate, editing}) {
   const projection = holidays.find(holiday => {
     if (override != null) {
       return holiday.slug === override;
     }
-    const currentDate = new Date();
     const year = currentDate.getFullYear();
     const startDate = new Date(`${holiday.start}, ${year}`);
     const endDate = new Date(`${holiday.end}, ${year} 23:59:59`);
