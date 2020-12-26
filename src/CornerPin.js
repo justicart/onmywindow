@@ -66,13 +66,19 @@ function CornerPin({children, editing}) {
 
   useEffect(() => {
     update();
-    window.addEventListener('mousedown', drag);
+    window.addEventListener('mousedown', mousedown);
     window.addEventListener('mouseup', mouseup);
     window.addEventListener('mousemove', move);
+    window.addEventListener('touchstart', mousedown);
+    window.addEventListener('touchend', mouseup);
+    window.addEventListener('touchmove', move);
     return () => {
-      window.removeEventListener('mousedown', drag);
+      window.removeEventListener('mousedown', mousedown);
       window.removeEventListener('mouseup', mouseup);
       window.removeEventListener('mousemove', move);
+      window.removeEventListener('touchstart', mousedown);
+      window.removeEventListener('touchend', mouseup);
+      window.removeEventListener('touchmove', move);
     }
   });
 
@@ -100,15 +106,22 @@ function CornerPin({children, editing}) {
     };
     if (currentCorner < 0) return;
     const cornersArr = [...corners];
-    cornersArr[currentCorner] = {
-      x: event.pageX,
-      y: event.pageY,
+    if (Array.isArray(event.touches)) {
+      cornersArr[currentCorner] = {
+        x: event.touches[0].pageX,
+        y: event.touches[0].pageY,
+      }
+    } else {
+      cornersArr[currentCorner] = {
+        x: event.pageX,
+        y: event.pageY,
+      }
     }
     setCorners(cornersArr);
     update();
   }
 
-  function drag(event) {
+  function mousedown(event) {
     event.preventDefault();
     const x = event.pageX, y = event.pageY;
     let dx, dy;
