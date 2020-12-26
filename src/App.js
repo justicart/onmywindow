@@ -6,23 +6,12 @@ import {holidays} from './holidays';
 import Projection from './components/Projection';
 import ClearButton from './ClearButton';
 
-function getDate () {
-  return new Date();
-}
-
 function App() {
   const [override, setOverride] = useState();
   const [buttonsHidden, setButtonsHidden] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [currentDate, setCurrentDate] = useState(getDate());
   const appRef = useRef();
   const mouseMoveTimerRef = useRef();
-  const dateRef = useRef();
-
-  useEffect(() => {
-    dateRef.current = setInterval(setCurrentDate, 1000, getDate);
-    return () => clearInterval(dateRef.current);
-  }, []);
 
   useEffect(() => {
     if (buttonsHidden === false) {
@@ -52,7 +41,7 @@ function App() {
 
   return (
     <div className="App" ref={appRef} onMouseMove={()=> setButtonsHidden(false)}>
-      <Projection override={override} currentDate={currentDate} editing={editing} />
+      <Projection override={override} editing={editing} />
       <div className={`buttons ${isFullscreen && buttonsHidden ? 'hide' : ''}`}>
         <div className="buttonGroup">
           <div

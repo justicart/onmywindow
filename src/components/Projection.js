@@ -1,8 +1,23 @@
+import {useEffect, useRef, useState} from 'react';
+
 import {holidays} from '../holidays';
-import {SEC_IN, INITIAL_VALUES} from '../constants';
+import {INITIAL_VALUES, SEC_IN} from '../constants';
 import CornerPin from '../CornerPin';
 
-function Projection({override, currentDate, editing}) {
+function getDate () {
+  return new Date();
+}
+
+function Projection({override, editing}) {
+  const [currentDate, setCurrentDate] = useState(getDate());
+
+  const dateRef = useRef();
+
+  useEffect(() => {
+    dateRef.current = setInterval(setCurrentDate, SEC_IN.minute, getDate);
+    return () => clearInterval(dateRef.current);
+  }, []);
+
   const projection = holidays.find(holiday => {
     if (override != null) {
       return holiday.slug === override;
