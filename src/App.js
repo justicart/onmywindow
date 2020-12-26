@@ -2,9 +2,9 @@
 import './App.css';
 import {useEffect, useRef, useState} from 'react';
 
-import {holidays} from './holidays';
+import {holidays} from './projections/holidays';
 import Projection from './components/Projection';
-import ClearButton from './ClearButton';
+import ClearButton from './components/ClearButton';
 
 function App() {
   const [override, setOverride] = useState();

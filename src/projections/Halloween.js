@@ -1,4 +1,4 @@
-import Video from '../Video';
+import Video from '../components/Video';
 import halloween from '../static/halloween.webm';
 
 function Halloween() {

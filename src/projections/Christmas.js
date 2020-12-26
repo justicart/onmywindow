@@ -1,4 +1,4 @@
-import Video from '../Video';
+import Video from '../components/Video';
 import christmas from '../static/christmas_full.mp4';
 
 function Christmas() {

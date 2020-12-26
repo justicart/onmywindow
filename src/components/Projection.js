@@ -1,8 +1,8 @@
 import {useEffect, useRef, useState} from 'react';
 
-import {holidays} from '../holidays';
+import {holidays} from '../projections/holidays';
 import {INITIAL_VALUES, SEC_IN} from '../constants';
-import CornerPin from '../CornerPin';
+import CornerPin from './CornerPin';
 
 function getDate () {
   return new Date();

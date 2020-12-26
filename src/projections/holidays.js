@@ -1,6 +1,6 @@
-import NewYears from './components/NewYears';
-import Christmas from './components/Christmas';
-import Halloween from './components/Halloween';
+import NewYears from '../projections/NewYears';
+import Christmas from '../projections/Christmas';
+import Halloween from '../projections/Halloween';
 
 export const holidays = [
   {
