@@ -1,4 +1,4 @@
-
+import logo from './static/window_color.png';
 import './App.css';
 import {useEffect, useRef, useState} from 'react';
 
@@ -42,7 +42,8 @@ function App() {
   return (
     <div className="App" ref={appRef} onMouseMove={()=> setButtonsHidden(false)}>
       <Projection override={override} editing={editing} />
-      <div className={`buttons ${isFullscreen && buttonsHidden ? 'hide' : ''}`}>
+      <div className={`header ${isFullscreen && buttonsHidden ? 'hide' : ''}`}>
+        <img src={logo} className="logo" alt="window logo" />
         <div className="buttonGroup">
           <div
             className={`button ${editing ? 'selected' : ''}`}

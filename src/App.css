@@ -14,7 +14,13 @@
   touch-action: none;
 }
 
-.buttons {
+.logo {
+  vertical-align: middle;
+  height: 30px;
+  margin-left: 8px;
+}
+
+.header {
   transition: 500ms opacity ease;
   opacity: 1;
   position: absolute;
@@ -22,9 +28,10 @@
   left: 0;
   z-index: 10;
 }
-.buttons.hide {
+.header.hide {
   opacity: 0;
 }
+
 .button {
 	background-color:#00263b;
 	border-radius:10px;
