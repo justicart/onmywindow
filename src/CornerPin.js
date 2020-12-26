@@ -124,7 +124,14 @@ function CornerPin({children, editing}) {
 
   function mousedown(event) {
     event.preventDefault();
-    const x = event.pageX, y = event.pageY;
+    let x, y;
+    if (Array.isArray(event.touches)) {
+      x = event.touches[0].pageX;
+      y = event.touches[0].pageY;
+    } else {
+      x = event.pageX;
+      y = event.pageY;
+    }
     let dx, dy;
     let best = 400; // 20px grab radius
     setCurrentCorner(-1);
