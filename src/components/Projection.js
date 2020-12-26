@@ -15,11 +15,36 @@ function Projection({override, editing}) {
 
   if (projection != null) {
     return (
-      <CornerPin editing={editing}>
-        <div className="mirror">
-          {projection.component}
-        </div>
-      </CornerPin>
+      <>
+        <CornerPin
+          boxName="main"
+          initialValue={[
+            {x: 100, y: 100},
+            {x: 600, y: 100},
+            {x: 100, y: 400},
+            {x: 600, y: 400},
+          ]}
+          editing={editing}
+        >
+          <div className="mirror">
+            {projection.component}
+          </div>
+        </CornerPin>
+        <CornerPin
+          boxName="mask"
+          initialValue={[
+            {x: 25, y: 100},
+            {x: 75, y: 100},
+            {x: 25, y: 150},
+            {x: 75, y: 150},
+          ]}
+          editing={editing}
+        >
+          <div className="mask">
+            {editing && "(mask)"}
+          </div>
+        </CornerPin>
+      </>
     )
   }
 }

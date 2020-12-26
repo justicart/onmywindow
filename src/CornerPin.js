@@ -4,6 +4,13 @@ import {useLocalStorage} from './hooks/useLocalStorage';
 
 import Corner from './Corner';
 
+const DEFAULT_CORNERS = [
+  {x: 100, y: 100}, // Top left
+  {x: 300, y: 100}, // Top right
+  {x: 100, y: 300}, // Bottom left
+  {x: 300, y: 300}, // Bottom right
+];
+
 function adj(m) { // Compute the adjugate of m
   return [
     m[4]*m[8]-m[5]*m[7], m[2]*m[7]-m[1]*m[8], m[1]*m[5]-m[2]*m[4],
@@ -55,14 +62,9 @@ function general2DProjection(
   return multmm(d, adj(s));
 }
 
-function CornerPin({children, editing}) {
+function CornerPin({children, boxName, initialValue, editing}) {
   const box = useRef();
-  const [corners, setCorners] = useLocalStorage('corners', [
-    {x: 100, y: 100},
-    {x: 300, y: 100},
-    {x: 100, y: 300},
-    {x: 300, y: 300},
-  ]);
+  const [corners, setCorners] = useLocalStorage(boxName, initialValue || DEFAULT_CORNERS);
   const [currentCorner, setCurrentCorner] = useState(-1);
   const [transform, setTransform] = useState();
 

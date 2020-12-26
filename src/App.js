@@ -4,6 +4,7 @@ import {useEffect, useRef, useState} from 'react';
 
 import {holidays} from './holidays';
 import Projection from './components/Projection';
+import ClearButton from './ClearButton';
 
 function App() {
   const [override, setOverride] = useState();
@@ -61,6 +62,16 @@ function App() {
             onClick={requestFullscreen}
           >Fullscreen</div>
         </div>
+        {editing && <div className="buttonGroup">
+          <ClearButton
+            item="main"
+            label="Clear Main"
+          />
+          <ClearButton
+            item="mask"
+            label="Clear Mask"
+          />
+        </div>}
       </div>
     </div>
   );
