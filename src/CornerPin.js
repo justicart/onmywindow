@@ -101,6 +101,7 @@ function CornerPin({children, editing}) {
   }
 
   function move(event) {
+    event.preventDefault();
     if (editing !== true) {
       return;
     };
