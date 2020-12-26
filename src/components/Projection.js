@@ -8,7 +8,7 @@ function getDate () {
   return new Date();
 }
 
-function Projection({override, editing}) {
+function Projection({override, editing, reversed}) {
   const [currentDate, setCurrentDate] = useState(getDate());
 
   const dateRef = useRef();
@@ -37,7 +37,7 @@ function Projection({override, editing}) {
           initialValue={INITIAL_VALUES.MAIN}
           editing={editing}
         >
-          <div className="mirror">
+          <div className={reversed ? 'mirror' : ''}>
             {projection.component}
           </div>
         </CornerPin>

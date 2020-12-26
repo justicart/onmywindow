@@ -10,6 +10,7 @@ function App() {
   const [override, setOverride] = useState();
   const [buttonsHidden, setButtonsHidden] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [isReversed, setIsReversed] = useState(true);
   const appRef = useRef();
   const mouseMoveTimerRef = useRef();
 
@@ -41,7 +42,7 @@ function App() {
 
   return (
     <div className="App" ref={appRef} onMouseMove={()=> setButtonsHidden(false)}>
-      <Projection override={override} editing={editing} />
+      <Projection override={override} editing={editing} reversed={isReversed} />
       <div className={`header ${isFullscreen && buttonsHidden ? 'hide' : ''}`}>
         <img src={logo} className="logo" alt="window logo" />
         <div className="buttonGroup">
@@ -62,6 +63,10 @@ function App() {
             className={`button ${isFullscreen ? 'selected' : ''}`}
             onClick={requestFullscreen}
           >Fullscreen</div>
+          <div
+            className={`button ${isReversed ? 'selected' : ''}`}
+            onClick={() => setIsReversed(!isReversed)}
+          >Reverse</div>
         </div>
         {editing && <div className="buttonGroup">
           <ClearButton
