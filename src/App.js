@@ -46,6 +46,12 @@ function App() {
       <div className={`buttons ${isFullscreen && buttonsHidden ? 'hide' : ''}`}>
         <div className="buttonGroup">
           <div
+            className={`button ${editing ? 'selected' : ''}`}
+            onClick={() => setEditing(!editing)}
+          >Edit</div>
+        </div>
+        <div className="buttonGroup">
+          <div
             className={`button ${override == null ? 'selected' : ''}`}
             onClick={() => setOverride()}
           >Auto</div>
@@ -60,12 +66,6 @@ function App() {
             className={`button ${isFullscreen ? 'selected' : ''}`}
             onClick={requestFullscreen}
           >Fullscreen</div>
-        </div>
-        <div className="buttonGroup">
-          <div
-            className={`button ${editing ? 'selected' : ''}`}
-            onClick={() => setEditing(!editing)}
-          >Edit</div>
         </div>
       </div>
     </div>

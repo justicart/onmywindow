@@ -19,7 +19,7 @@
   opacity: 1;
   position: absolute;
   top: 0;
-  left: 100px;
+  left: 0;
   z-index: 10;
 }
 .buttons.hide {
@@ -91,13 +91,35 @@
   position: absolute;
   top: 0px; left: 0px;
   border: 1px solid white;
-  margin-left: -10px;
-  margin-top: -10px;
+  margin-left: -16px;
+  margin-top: -16px;
   background: rgba(255,255,255,0.3);
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: move;
+  box-sizing: border-box;
+}
+.corner::before, .corner::after {
+  content: '';
+  position: absolute;
+  background-color: white;
+}
+.corner::before {
+  height: 100%;
+  width: 1px;
+  top: 0;
+  left: 50%;
+}
+.corner::after {
+  height: 1px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+}
+.corner.selected {
+  border-width: 4px;
+  background: transparent;
 }
 
 .mirror {

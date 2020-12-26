@@ -34,10 +34,10 @@ function Corner({
   }
   return (
     <div
-      className="corner"
+      className={`corner ${currentCorner === i ? 'selected' : ''}`}
       style={{left: `${corner.x}px`, top: `${corner.y}px`}}
       ref={cornerRef}
-    >{i}</div>
+    />
   );
 }
 
