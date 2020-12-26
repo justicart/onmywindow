@@ -11,6 +11,12 @@ export const SEC_IN = {
   MINUTE: 60
 }
 
+export const MILLISEC_IN ={
+  DAY: SEC_IN.DAY * 1000,
+  HOUR: SEC_IN.HOUR * 1000,
+  MINUTE: SEC_IN.MINUTE * 1000,
+}
+
 export const INITIAL_VALUES = {
   MAIN: [
     {x: 100, y: 100},

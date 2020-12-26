@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from 'react';
 
 import {holidays} from '../projections/holidays';
-import {INITIAL_VALUES, SEC_IN} from '../constants';
+import {INITIAL_VALUES, MILLISEC_IN} from '../constants';
 import CornerPin from './CornerPin';
 
 function getDate () {
@@ -14,7 +14,7 @@ function Projection({override, editing, reversed}) {
   const dateRef = useRef();
 
   useEffect(() => {
-    dateRef.current = setInterval(setCurrentDate, SEC_IN.minute, getDate);
+    dateRef.current = setInterval(setCurrentDate, MILLISEC_IN.MINUTE, getDate);
     return () => clearInterval(dateRef.current);
   }, []);
 
