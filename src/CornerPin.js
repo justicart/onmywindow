@@ -53,7 +53,7 @@ function general2DProjection(
   return multmm(d, adj(s));
 }
 
-function CornerPin({children}) {
+function CornerPin({children, editing}) {
   const box = useRef();
   const [corners, setCorners] = useLocalStorage('corners', [
     {x: 100, y: 100},
@@ -95,6 +95,9 @@ function CornerPin({children}) {
   }
 
   function move(event) {
+    if (editing !== true) {
+      return;
+    };
     if (currentCorner < 0) return;
     const cornersArr = [...corners];
     cornersArr[currentCorner] = {
@@ -123,7 +126,6 @@ function CornerPin({children}) {
 
   function mouseup() {
     setCurrentCorner(-1);
-    console.log(corners);
   }
 
   const cornerElements = corners.map((corner, i) => {
@@ -137,7 +139,7 @@ function CornerPin({children}) {
       <div className="window" ref={box} style={{transform}}>
         {children}
       </div>
-      {cornerElements}
+      {editing && cornerElements}
     </>
   );
 }
