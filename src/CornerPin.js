@@ -68,6 +68,12 @@ function CornerPin({children, editing}) {
 
   useEffect(() => {
     update();
+    window.addEventListener('mousemove', move);
+    window.addEventListener('touchmove', move);
+    return () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('touchmove', move);
+    }
   })
 
   function transform2d(elt, x1, y1, x2, y2, x3, y3, x4, y4) {
@@ -86,6 +92,26 @@ function CornerPin({children, editing}) {
   function update() {
     transform2d(box, corners[0].x, corners[0].y, corners[1].x, corners[1].y,
                      corners[2].x, corners[2].y, corners[3].x, corners[3].y);
+  }
+
+  function move(event) {
+    event.preventDefault();
+    if (editing !== true) {
+      return;
+    };
+    if (currentCorner < 0) return;
+    const cornersArr = [...corners];
+    let x, y;
+    if (event.touches != null) {
+      x = event.touches[0].pageX;
+      y = event.touches[0].pageY;
+    } else {
+      x = event.pageX;
+      y = event.pageY;
+    }
+    cornersArr[currentCorner] = {x, y}
+    setCorners(cornersArr);
+    update();
   }
 
   const cornerElements = corners.map((corner, i) => {
