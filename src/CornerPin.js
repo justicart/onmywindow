@@ -2,6 +2,8 @@ import React from 'react';
 import {useEffect, useRef, useState} from 'react';
 import {useLocalStorage} from './hooks/useLocalStorage';
 
+import Corner from './Corner';
+
 function adj(m) { // Compute the adjugate of m
   return [
     m[4]*m[8]-m[5]*m[7], m[2]*m[7]-m[1]*m[8], m[1]*m[5]-m[2]*m[4],
@@ -66,21 +68,7 @@ function CornerPin({children, editing}) {
 
   useEffect(() => {
     update();
-    window.addEventListener('mousedown', mousedown);
-    window.addEventListener('mouseup', mouseup);
-    window.addEventListener('mousemove', move);
-    window.addEventListener('touchstart', mousedown);
-    window.addEventListener('touchend', mouseup);
-    window.addEventListener('touchmove', move);
-    return () => {
-      window.removeEventListener('mousedown', mousedown);
-      window.removeEventListener('mouseup', mouseup);
-      window.removeEventListener('mousemove', move);
-      window.removeEventListener('touchstart', mousedown);
-      window.removeEventListener('touchend', mouseup);
-      window.removeEventListener('touchmove', move);
-    }
-  });
+  })
 
   function transform2d(elt, x1, y1, x2, y2, x3, y3, x4, y4) {
     const w = elt.current.offsetWidth, h = elt.current.offsetHeight;
@@ -100,58 +88,19 @@ function CornerPin({children, editing}) {
                      corners[2].x, corners[2].y, corners[3].x, corners[3].y);
   }
 
-  function move(event) {
-    event.preventDefault();
-    if (editing !== true) {
-      return;
-    };
-    if (currentCorner < 0) return;
-    const cornersArr = [...corners];
-    if (Array.isArray(event.touches)) {
-      cornersArr[currentCorner] = {
-        x: event.touches[0].pageX,
-        y: event.touches[0].pageY,
-      }
-    } else {
-      cornersArr[currentCorner] = {
-        x: event.pageX,
-        y: event.pageY,
-      }
-    }
-    setCorners(cornersArr);
-    update();
-  }
-
-  function mousedown(event) {
-    event.preventDefault();
-    let x, y;
-    if (Array.isArray(event.touches)) {
-      x = event.touches[0].pageX;
-      y = event.touches[0].pageY;
-    } else {
-      x = event.pageX;
-      y = event.pageY;
-    }
-    let dx, dy;
-    let best = 400; // 20px grab radius
-    setCurrentCorner(-1);
-    for (let i = 0; i !== 4; i += 1) {
-      dx = x - corners[i].x;
-      dy = y - corners[i].y;
-      if (best > dx*dx + dy*dy) {
-        best = dx*dx + dy*dy;
-        setCurrentCorner(i);
-      }
-    }
-  }
-
-  function mouseup() {
-    setCurrentCorner(-1);
-  }
-
   const cornerElements = corners.map((corner, i) => {
     return (
-      <div className="corner" key={`corner${i}`} style={{left: `${corner.x}px`, top: `${corner.y}px`}} />
+      <Corner
+        editing={editing}
+        update={update}
+        setCorners={setCorners}
+        corners={corners}
+        corner={corner}
+        currentCorner={currentCorner}
+        setCurrentCorner={setCurrentCorner}
+        key={`corner${i}`}
+        i={i}
+      />
     )
   })
 
