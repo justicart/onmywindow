@@ -1,4 +1,5 @@
 import {holidays} from '../holidays';
+import {SEC_IN, INITIAL_VALUES} from '../constants';
 import CornerPin from '../CornerPin';
 
 function Projection({override, currentDate, editing}) {
@@ -8,8 +9,10 @@ function Projection({override, currentDate, editing}) {
     }
     const year = currentDate.getFullYear();
     const startDate = new Date(`${holiday.start}, ${year}`);
-    const endDate = new Date(`${holiday.end}, ${year} 23:59:59`);
-    return currentDate >= startDate && currentDate <= endDate;
+    const endDate = new Date(`${holiday.end}, ${year}`);
+    endDate.setDate(endDate.getDate() + 1);
+    console.log(currentDate >= startDate && currentDate < endDate, startDate, currentDate, endDate);
+    return currentDate >= startDate && currentDate < endDate;
   })
 
   if (projection != null) {
@@ -17,12 +20,7 @@ function Projection({override, currentDate, editing}) {
       <>
         <CornerPin
           boxName="main"
-          initialValue={[
-            {x: 100, y: 100},
-            {x: 600, y: 100},
-            {x: 100, y: 400},
-            {x: 600, y: 400},
-          ]}
+          initialValue={INITIAL_VALUES.MAIN}
           editing={editing}
         >
           <div className="mirror">
@@ -31,12 +29,7 @@ function Projection({override, currentDate, editing}) {
         </CornerPin>
         <CornerPin
           boxName="mask"
-          initialValue={[
-            {x: 25, y: 100},
-            {x: 75, y: 100},
-            {x: 25, y: 150},
-            {x: 75, y: 150},
-          ]}
+          initialValue={INITIAL_VALUES.MASK}
           editing={editing}
         >
           <div className="mask">
@@ -46,6 +39,7 @@ function Projection({override, currentDate, editing}) {
       </>
     )
   }
+  return null;
 }
 
 export default Projection;
