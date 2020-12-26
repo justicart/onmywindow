@@ -8,7 +8,6 @@ import Projection from './components/Projection';
 function App() {
   const [override, setOverride] = useState();
   const [buttonsHidden, setButtonsHidden] = useState(false);
-  const [showTest, setShowTest] = useState(false);
   const [editing, setEditing] = useState(false);
   const appRef = useRef();
   const mouseMoveTimerRef = useRef();
@@ -41,7 +40,6 @@ function App() {
 
   return (
     <div className="App" ref={appRef} onMouseMove={()=> setButtonsHidden(false)}>
-      {showTest && <div className="template" />}
       <Projection override={override} editing={editing} />
       <div className={`buttons ${isFullscreen && buttonsHidden ? 'hide' : ''}`}>
         <div className="buttonGroup">
@@ -58,10 +56,6 @@ function App() {
           {overrideButtons}
         </div>
         <div className="buttonGroup">
-          <div
-            className={`button ${showTest ? 'selected' : ''}`}
-            onClick={() => setShowTest(!showTest)}
-          >Test</div>
           <div
             className={`button ${isFullscreen ? 'selected' : ''}`}
             onClick={requestFullscreen}
