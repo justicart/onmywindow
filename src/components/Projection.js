@@ -11,7 +11,6 @@ function Projection({override, currentDate, editing}) {
     const startDate = new Date(`${holiday.start}, ${year}`);
     const endDate = new Date(`${holiday.end}, ${year}`);
     endDate.setDate(endDate.getDate() + 1);
-    console.log(currentDate >= startDate && currentDate < endDate, startDate, currentDate, endDate);
     return currentDate >= startDate && currentDate < endDate;
   })
 
