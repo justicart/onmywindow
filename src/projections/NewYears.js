@@ -2,10 +2,11 @@ import React from 'react';
 import {useEffect, useRef, useState} from 'react';
 import usePrevious from '../hooks/usePrevious';
 import {SEC_IN, UNITS} from '../constants';
+import Fireworks from './Fireworks';
 
 const getTimeLeft = () => {
   const countdownToDate = new Date("Jan 01, 2021");
-  // const countdownToDate = new Date("Dec 20, 2020 18:27:00");
+  // const countdownToDate = new Date("Dec 31, 2020 19:30:00");
   const currentTime = new Date();
   const timeLeft = (countdownToDate - currentTime) / 1000;
   const seconds = Math.floor( timeLeft % 60 );
@@ -73,6 +74,7 @@ function Panel({timeLeft, unit}) {
 
 function NewYears() {
   const [timeLeft, setTimeLeft] = useState({});
+  const [showFireworks, setShowFireworks] = useState(false);
   const requestRef = useRef();
 
   useEffect(() => {
@@ -81,16 +83,20 @@ function NewYears() {
     return () => clearInterval(requestRef.current);
   }, []);
   useEffect(() => {
-    if (timeLeft < 0) {
+    if (timeLeft.total <= 0) {
+      setShowFireworks(true);
       clearInterval(requestRef.current);
     }
   }, [timeLeft]);
   return (
-    <div className="content">
-      <Panel timeLeft={timeLeft} unit={UNITS.DAYS} />
-      <Panel timeLeft={timeLeft} unit={UNITS.HOURS} />
-      <Panel timeLeft={timeLeft} unit={UNITS.MINUTES} />
-    </div>
+    <>
+      <div className="content">
+        <Panel timeLeft={timeLeft} unit={UNITS.DAYS} />
+        <Panel timeLeft={timeLeft} unit={UNITS.HOURS} />
+        <Panel timeLeft={timeLeft} unit={UNITS.MINUTES} />
+      </div>
+      {showFireworks && <Fireworks />}
+    </>
   );
 }
 

@@ -131,6 +131,8 @@
   flex-direction: row;
   height: 100%;
   width: 100%;
+  position: absolute;
+  z-index: 100;
 }
 .panel {
   flex: 1;
@@ -141,12 +143,14 @@
   font-weight: bold;
   text-transform: uppercase;
   line-height: 340px;
+  text-shadow: 0 0 20px black;
 }
 .unit {
   font-size: 180px;
   font-weight: bold;
   line-height: 340px;
   font-variant: tabular-nums;
+  text-shadow: 0 0 20px black;
 }
 .endText.animate,
 .unit.animate {
