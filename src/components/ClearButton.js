@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
+import {AppContext} from '../context';
 
 function ClearButton({label, item}) {
-  const [buttonLabel, setButtonLabel] = useState(label);
+  const {forceUpdate, setForceUpdate} = useContext(AppContext);
   function clearLocalStorage(item) {
     try {
       window.localStorage.removeItem(item);
-      setButtonLabel('(refresh)')
+      setForceUpdate({...forceUpdate, [item]: true});
     } catch (error) {
       console.log(error);
     }
@@ -14,7 +15,7 @@ function ClearButton({label, item}) {
     <div
       className="button"
       onClick={() => clearLocalStorage(item)}
-    >{buttonLabel}</div>
+    >{label}</div>
   );
 }
 

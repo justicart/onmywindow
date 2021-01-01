@@ -1,6 +1,7 @@
 import React from 'react';
-import {useEffect, useRef, useState} from 'react';
+import {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
+import {AppContext} from '../context';
 
 import Corner from './Corner';
 
@@ -67,6 +68,20 @@ function CornerPin({children, boxName, initialValue, editing}) {
   const [corners, setCorners] = useLocalStorage(boxName, initialValue || DEFAULT_CORNERS);
   const [currentCorner, setCurrentCorner] = useState(-1);
   const [transform, setTransform] = useState();
+  const {forceUpdate, setForceUpdate} = useContext(AppContext);
+
+  const update = useCallback(() => {
+    transform2d(box, corners[0].x, corners[0].y, corners[1].x, corners[1].y,
+                     corners[2].x, corners[2].y, corners[3].x, corners[3].y);
+  }, [corners])
+
+  useEffect(() => {
+    if (forceUpdate[boxName] === true) {
+      setCorners(initialValue);
+      update();
+      setForceUpdate({...forceUpdate, [boxName]: false});
+    }
+  }, [boxName, initialValue, forceUpdate, setForceUpdate, setCorners, update])
 
   useEffect(() => {
     update();
@@ -89,11 +104,6 @@ function CornerPin({children, boxName, initialValue, editing}) {
          t[2], t[5], 0, t[8]];
     t = "matrix3d(" + t.join(", ") + ")";
     setTransform(t);
-  }
-
-  function update() {
-    transform2d(box, corners[0].x, corners[0].y, corners[1].x, corners[1].y,
-                     corners[2].x, corners[2].y, corners[3].x, corners[3].y);
   }
 
   function move(event) {

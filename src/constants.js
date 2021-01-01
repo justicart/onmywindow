@@ -20,9 +20,9 @@ export const MILLISEC_IN ={
 export const INITIAL_VALUES = {
   MAIN: [
     {x: 100, y: 100},
-    {x: 600, y: 100},
-    {x: 100, y: 400},
-    {x: 600, y: 400},
+    {x: 1000, y: 100},
+    {x: 100, y: 560},
+    {x: 1000, y: 560},
   ],
   MASK: [
     {x: 25, y: 100},
