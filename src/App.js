@@ -10,8 +10,7 @@ import ClearButton from './components/ClearButton';
 function Content() {
   const [override, setOverride] = useState();
   const [buttonsHidden, setButtonsHidden] = useState(false);
-  const {editing, setEditing} = useContext(AppContext);
-  const {reversed, setReversed} = useContext(AppContext);
+  const {editing, setEditing, reversed, setReversed} = useContext(AppContext);
   const appRef = useRef();
   const mouseMoveTimerRef = useRef();
 
@@ -43,7 +42,7 @@ function Content() {
 
   return (
     <div className="App" ref={appRef} onMouseMove={()=> setButtonsHidden(false)}>
-      <Projection override={override} />
+      <Projection override={override} hideUI={isFullscreen && buttonsHidden} />
       <div className={`header ${isFullscreen && buttonsHidden ? 'hide' : ''}`}>
         <img src={logo} className="logo" alt="window logo" />
         <div className="buttonGroup">

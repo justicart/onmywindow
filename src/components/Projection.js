@@ -10,7 +10,7 @@ function getDate () {
   return new Date();
 }
 
-function Projection({override}) {
+function Projection({override, hideUI}) {
   const [currentDate, setCurrentDate] = useState(() => getDate());
   const {editing, reversed} = useContext(AppContext);
 
@@ -36,7 +36,7 @@ function Projection({override}) {
     return (
       <NyeProvider>
         <>
-          <div className="subSettings">
+          <div className={`subSettings ${hideUI ? 'hide' : ''}`}>
             {projection.settingsComponent || null}
           </div>
           <CornerPin
