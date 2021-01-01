@@ -1,16 +1,18 @@
 import logo from './static/window_color.png';
 import './App.css';
-import {useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
+import {AppContext, AppProvider} from './context';
 
 import {holidays} from './projections/holidays';
 import Projection from './components/Projection';
 import ClearButton from './components/ClearButton';
 
-function App() {
+function Content() {
   const [override, setOverride] = useState();
   const [buttonsHidden, setButtonsHidden] = useState(false);
   const [editing, setEditing] = useState(false);
   const [isReversed, setIsReversed] = useState(true);
+  const {add2, setAdd2} = useContext(AppContext);
   const appRef = useRef();
   const mouseMoveTimerRef = useRef();
 
@@ -67,6 +69,10 @@ function App() {
             className={`button ${isReversed ? 'selected' : ''}`}
             onClick={() => setIsReversed(!isReversed)}
           >Reverse</div>
+          <div
+            className={`button ${add2 ? 'selected' : ''}`}
+            onClick={() => setAdd2(!add2)}
+          >+2 Hours</div>
         </div>
         {editing && <div className="buttonGroup">
           <ClearButton
@@ -81,6 +87,14 @@ function App() {
       </div>
     </div>
   );
+}
+
+function App() {
+  return (
+    <AppProvider>
+      <Content />
+    </AppProvider>
+  )
 }
 
 export default App;

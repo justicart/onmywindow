@@ -1,11 +1,15 @@
 import React from 'react';
-import {useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import usePrevious from '../hooks/usePrevious';
 import {SEC_IN, UNITS} from '../constants';
 import Fireworks from './Fireworks';
+import {AppContext} from '../context';
 
-const getTimeLeft = () => {
-  const countdownToDate = new Date("Jan 01, 2021");
+const getTimeLeft = (add2) => {
+  let countdownToDate = new Date("Jan 01, 2021");
+  if (add2) {
+    countdownToDate = new Date("Dec 31, 2020 22:00:00")
+  }
   // const countdownToDate = new Date("Dec 31, 2020 19:30:00");
   const currentTime = new Date();
   const timeLeft = (countdownToDate - currentTime) / 1000;
@@ -76,18 +80,24 @@ function NewYears() {
   const [timeLeft, setTimeLeft] = useState({});
   const [showFireworks, setShowFireworks] = useState(false);
   const requestRef = useRef();
+  const {add2} = useContext(AppContext);
 
   useEffect(() => {
-    setTimeLeft(getTimeLeft());
-    requestRef.current = setInterval(setTimeLeft, 1000, getTimeLeft);
+    const handleInterval = () => {
+      setTimeLeft(getTimeLeft(add2));
+    }
+    setTimeLeft(getTimeLeft(add2));
+    requestRef.current = setInterval(handleInterval, 1000);
     return () => clearInterval(requestRef.current);
-  }, []);
+  }, [add2]);
+
   useEffect(() => {
     if (timeLeft.total <= 0) {
       setShowFireworks(true);
       clearInterval(requestRef.current);
     }
   }, [timeLeft]);
+
   return (
     <>
       <div className="content">

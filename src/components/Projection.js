@@ -8,8 +8,8 @@ function getDate () {
   return new Date();
 }
 
-function Projection({override, editing, reversed}) {
-  const [currentDate, setCurrentDate] = useState(getDate());
+function Projection({add2, override, editing, reversed}) {
+  const [currentDate, setCurrentDate] = useState(() => getDate());
 
   const dateRef = useRef();
 
