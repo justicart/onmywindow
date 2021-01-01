@@ -1,15 +1,17 @@
-import {useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 
 import {holidays} from '../projections/holidays';
 import {INITIAL_VALUES, MILLISEC_IN} from '../constants';
 import CornerPin from './CornerPin';
+import {AppContext} from '../context';
 
 function getDate () {
   return new Date();
 }
 
-function Projection({add2, override, editing, reversed}) {
+function Projection({override}) {
   const [currentDate, setCurrentDate] = useState(() => getDate());
+  const {editing, reversed} = useContext(AppContext);
 
   const dateRef = useRef();
 

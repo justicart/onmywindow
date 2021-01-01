@@ -1,11 +1,18 @@
 import React, {useState} from 'react';
 
-export const AppContext = React.createContext({add2: false, setAdd2: () => {}})
+export const AppContext = React.createContext({
+  editing: false, setEditing: () => {},
+  reversed: true, setReversed: () => {},
+})
 
 export const AppProvider = (props) => {
-  const [add2, setAdd2] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [reversed, setReversed] = useState(true);
   return (
-    <AppContext.Provider value={{add2, setAdd2}}>
+    <AppContext.Provider value={{
+      editing, setEditing,
+      reversed, setReversed,
+    }}>
       {props.children}
     </AppContext.Provider>
   );

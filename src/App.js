@@ -10,9 +10,8 @@ import ClearButton from './components/ClearButton';
 function Content() {
   const [override, setOverride] = useState();
   const [buttonsHidden, setButtonsHidden] = useState(false);
-  const [editing, setEditing] = useState(false);
-  const [isReversed, setIsReversed] = useState(true);
-  const {add2, setAdd2} = useContext(AppContext);
+  const {editing, setEditing} = useContext(AppContext);
+  const {reversed, setReversed} = useContext(AppContext);
   const appRef = useRef();
   const mouseMoveTimerRef = useRef();
 
@@ -44,7 +43,7 @@ function Content() {
 
   return (
     <div className="App" ref={appRef} onMouseMove={()=> setButtonsHidden(false)}>
-      <Projection override={override} editing={editing} reversed={isReversed} />
+      <Projection override={override} />
       <div className={`header ${isFullscreen && buttonsHidden ? 'hide' : ''}`}>
         <img src={logo} className="logo" alt="window logo" />
         <div className="buttonGroup">
@@ -66,13 +65,9 @@ function Content() {
             onClick={requestFullscreen}
           >Fullscreen</div>
           <div
-            className={`button ${isReversed ? 'selected' : ''}`}
-            onClick={() => setIsReversed(!isReversed)}
+            className={`button ${reversed ? 'selected' : ''}`}
+            onClick={() => setReversed(!reversed)}
           >Reverse</div>
-          <div
-            className={`button ${add2 ? 'selected' : ''}`}
-            onClick={() => setAdd2(!add2)}
-          >+2 Hours</div>
         </div>
         {editing && <div className="buttonGroup">
           <ClearButton
