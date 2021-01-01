@@ -1,7 +1,7 @@
 import React from 'react';
 import {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
-import {AppContext} from '../context';
+import {AppContext} from '../contexts/context';
 
 import Corner from './Corner';
 

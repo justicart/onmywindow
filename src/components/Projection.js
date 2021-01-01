@@ -3,7 +3,8 @@ import {useContext, useEffect, useRef, useState} from 'react';
 import {holidays} from '../projections/holidays';
 import {INITIAL_VALUES, MILLISEC_IN} from '../constants';
 import CornerPin from './CornerPin';
-import {AppContext} from '../context';
+import {AppContext} from '../contexts/context';
+import {NyeProvider} from '../contexts/NyeContext';
 
 function getDate () {
   return new Date();
@@ -33,26 +34,31 @@ function Projection({override}) {
 
   if (projection != null) {
     return (
-      <>
-        <CornerPin
-          boxName="main"
-          initialValue={INITIAL_VALUES.MAIN}
-          editing={editing}
-        >
-          <div className={reversed ? 'mirror' : ''}>
-            {projection.component}
+      <NyeProvider>
+        <>
+          <div className="subSettings">
+            {projection.settingsComponent || null}
           </div>
-        </CornerPin>
-        <CornerPin
-          boxName="mask"
-          initialValue={INITIAL_VALUES.MASK}
-          editing={editing}
-        >
-          <div className="mask">
-            {editing && "(mask)"}
-          </div>
-        </CornerPin>
-      </>
+          <CornerPin
+            boxName="main"
+            initialValue={INITIAL_VALUES.MAIN}
+            editing={editing}
+          >
+            <div className={reversed ? 'mirror' : ''}>
+              {projection.component}
+            </div>
+          </CornerPin>
+          <CornerPin
+            boxName="mask"
+            initialValue={INITIAL_VALUES.MASK}
+            editing={editing}
+          >
+            <div className="mask">
+              {editing && "(mask)"}
+            </div>
+          </CornerPin>
+        </>
+      </NyeProvider>
     )
   }
   return null;

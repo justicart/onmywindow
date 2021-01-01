@@ -32,6 +32,12 @@
   opacity: 0;
 }
 
+.subSettings {
+  position: absolute;
+  top: 50px;
+  left: 160px;
+}
+
 .button {
 	background-color:#00263b;
 	border-radius:10px;

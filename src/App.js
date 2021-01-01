@@ -1,7 +1,7 @@
 import logo from './static/window_color.png';
 import './App.css';
 import {useContext, useEffect, useRef, useState} from 'react';
-import {AppContext, AppProvider} from './context';
+import {AppContext, AppProvider} from './contexts/context';
 
 import {holidays} from './projections/holidays';
 import Projection from './components/Projection';
