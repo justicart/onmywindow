@@ -6,6 +6,7 @@ import {AppContext, AppProvider} from './contexts/context';
 import {holidays} from './projections/holidays';
 import Projection from './components/Projection';
 import ClearButton from './components/ClearButton';
+import Dropdown from './components/Dropdown';
 
 function Content() {
   const [override, setOverride] = useState();
@@ -31,15 +32,6 @@ function Content() {
     appRef.current.requestFullscreen();
   }
 
-  const overrideButtons = holidays.map(holiday => {
-    if (holiday.hide === true) return null;
-    return <div
-      className={`button ${override === holiday.slug ? 'selected' : ''}`}
-      key={holiday.slug}
-      onClick={() => setOverride(holiday.slug)}
-    >{holiday.name}</div>
-  })
-
   return (
     <div className="App" ref={appRef} onMouseMove={()=> setButtonsHidden(false)}>
       <Projection override={override} hideUI={isFullscreen && buttonsHidden} />
@@ -52,13 +44,12 @@ function Content() {
           >Edit</div>
         </div>
         <div className="buttonGroup">
-          <div
-            className={`button ${override == null ? 'selected' : ''}`}
-            onClick={() => setOverride()}
-          >Auto</div>
-          {overrideButtons}
-        </div>
-        <div className="buttonGroup">
+          <Dropdown
+            defaultOption={{slug: null, name: "Auto"}}
+            options={holidays}
+            onSelect={setOverride}
+            value={override}
+          />
           <div
             className={`button ${isFullscreen ? 'selected' : ''}`}
             onClick={requestFullscreen}

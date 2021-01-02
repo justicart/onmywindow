@@ -22,8 +22,8 @@ function Projection({override, hideUI}) {
   }, []);
 
   const projection = holidays.find(holiday => {
-    if (override != null) {
-      return holiday.slug === override;
+    if (override != null && override.slug != null) {
+      return holiday.slug === override.slug;
     }
     const year = currentDate.getFullYear();
     const startDate = new Date(`${holiday.start}, ${year}`);
