@@ -7,14 +7,14 @@ export default function perlinNoise (p) {
   let height = 720;
   let max = 500;
   let noiseMax = .05;
-  let count = 16;
-  let spacing = 8;
+  let count = 8;
+  let spacing = 16;
   let smooth = 1;
   let outerResolution = 1;
   let innerResolution = 100;
   let twist = 0.05;
   let rotate = 0;
-  let strokeWidth = 2;
+  let strokeWidth = 4;
   let strokeWidthDecay = 1;
   let strokeOpacityDecay = 1;
   let zOffset = 0.025;
