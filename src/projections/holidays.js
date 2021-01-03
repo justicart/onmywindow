@@ -1,5 +1,6 @@
 import NewYears from '../projections/NewYears';
 import NewYearsSettings from '../projections/NewYearsSettings';
+import Valentines from '../projections/valentines/Valentines';
 import Christmas from '../projections/Christmas';
 import Halloween from '../projections/Halloween';
 
@@ -12,6 +13,14 @@ export const holidays = [
     start: "Jan 1",
     end: "Jan 2",
     hide: true,
+  },
+  {
+    slug: "valentines",
+    name: "Valentines",
+    component: <Valentines />,
+    // settingsComponent: <NewYearsSettings />,
+    start: "Feb 1",
+    end: "Feb 28",
   },
   {
     slug: "halloween",
