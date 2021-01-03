@@ -7,9 +7,9 @@ export default function perlinNoise (p) {
   let height = 720;
   let max = 500;
   let noiseMax = .05;
-  let count = 8;
-  let spacing = 16;
-  let smooth = 1;
+  let count = 6;
+  let spacing = 24;
+  let smooth = 4;
   let outerResolution = 1;
   let innerResolution = 100;
   let twist = 0.05;
