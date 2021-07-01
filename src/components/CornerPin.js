@@ -144,7 +144,7 @@ function CornerPin({children, boxName, initialValue, editing}) {
 
   return (
     <>
-      <div className="window" ref={box} style={{transform}}>
+      <div className="window" ref={box} style={{transform, overflow: 'hidden'}}>
         {children}
       </div>
       {editing && cornerElements}
