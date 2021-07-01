@@ -3,7 +3,7 @@ import Fireworks from './Fireworks';
 
 function IndependenceDay() {
   return (
-    <Fireworks />
+    <Fireworks colors={['red', 'white', '#4285ff']} />
   );
 }
 

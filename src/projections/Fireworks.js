@@ -81,7 +81,7 @@ function Firework({left, top, color}) {
   );
 }
 
-function Emitter({delay}) {
+function Emitter({defaultColor, delay}) {
   const [showFirework, setShowFirework] = useState(false);
   const {showColors} = useContext(NyeContext);
   const timerRef = useRef();
@@ -101,19 +101,23 @@ function Emitter({delay}) {
 
   return showFirework &&
     <Firework
-      color={showColors ? color : null}
+      color={showColors ? color : defaultColor}
       left={left.current}
       top={top.current}
     />
 }
 
-function Fireworks() {
+function Fireworks({colors}) {
   return (
     <div className="fireworks">
-      <Emitter delay={0} /> {/* make sure one starts immediately */}
+      <Emitter defaultColor={Array.isArray(colors) && colors[0]} delay={0} /> {/* make sure one starts immediately */}
       {Array(9).fill(null).map(() => {
+				let color = null;
+				if (Array.isArray(colors)) {
+					color = colors[Math.floor(Math.random() * colors.length)];
+				}
         const delay = Math.floor(Math.random() * 4000);
-        return <Emitter delay={delay} key={delay} />
+        return <Emitter defaultColor={color} delay={delay} key={delay} />
       })}
     </div>
   )
