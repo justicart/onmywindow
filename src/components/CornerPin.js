@@ -142,9 +142,16 @@ function CornerPin({children, boxName, initialValue, editing}) {
     )
   })
 
+  const style = {
+    border: editing ? '1px solid white' : 'none',
+    boxShadow: editing ? 'inset 0 0 100px white' : 'none',
+    transform,
+    overflow: 'hidden',
+  };
+
   return (
     <>
-      <div className="window" ref={box} style={{transform, overflow: 'hidden'}}>
+      <div className="window" ref={box} style={style}>
         {children}
       </div>
       {editing && cornerElements}

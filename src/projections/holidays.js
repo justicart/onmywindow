@@ -27,7 +27,7 @@ export const holidays = [
     slug: "independence",
     name: "Independence Day",
     component: <IndependenceDay />,
-    // settingsComponent: <NewYearsSettings />,
+    settingsComponent: <NewYearsSettings />,
     start: "Jul 1",
     end: "Jul 5",
   },

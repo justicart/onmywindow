@@ -53,7 +53,7 @@ function Projection({override, hideUI}) {
             initialValue={INITIAL_VALUES.MASK}
             editing={editing}
           >
-            <div className="mask">
+            <div className="mask" style={{background: editing ? 'transparent' : 'black'}}>
               {editing && "(mask)"}
             </div>
           </CornerPin>
