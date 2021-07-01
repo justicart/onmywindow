@@ -1,6 +1,7 @@
 import NewYears from '../projections/NewYears';
 import NewYearsSettings from '../projections/NewYearsSettings';
 import Valentines from '../projections/valentines/Valentines';
+import IndependenceDay from '../projections/IndependenceDay';
 import Christmas from '../projections/Christmas';
 import Halloween from '../projections/Halloween';
 
@@ -21,6 +22,14 @@ export const holidays = [
     // settingsComponent: <NewYearsSettings />,
     start: "Feb 1",
     end: "Feb 28",
+  },
+  {
+    slug: "independence",
+    name: "Independence Day",
+    component: <IndependenceDay />,
+    // settingsComponent: <NewYearsSettings />,
+    start: "Jul 1",
+    end: "Jul 5",
   },
   {
     slug: "halloween",
